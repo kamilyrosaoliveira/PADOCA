@@ -18,7 +18,6 @@ export const CustomersPage: React.FC = () => {
   );
 
   const handleSendAlert = (customerId: string) => {
-    // In a real app, this would send an actual notification
     setCustomers(customers.map(customer => 
       customer.id === customerId 
         ? { ...customer, notificationSent: true } 
@@ -28,15 +27,10 @@ export const CustomersPage: React.FC = () => {
   };
 
   const handleAddCustomer = (customer: Customer) => {
-    const newCustomer = {
-      ...customer,
-      id: (customers.length + 1).toString(),
-      lastPurchaseDate: new Date().toISOString().split('T')[0],
-      notificationSent: false
-    };
-    
-    setCustomers([...customers, newCustomer]);
+    // Add the new customer to the list
+    setCustomers([...customers, customer]);
     setShowAddForm(false);
+    alert('Cliente cadastrado com sucesso!');
   };
 
   const handleRecordPayment = (customerId: string, amount: number) => {

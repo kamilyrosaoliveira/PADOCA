@@ -19,6 +19,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({
       phone: '',
       email: '',
       debtAmount: 0,
+      notificationSent: false
     }
   );
 
@@ -45,8 +46,20 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({
       return;
     }
     
+    // Create a complete customer object
+    const newCustomer: Customer = {
+      id: customer?.id || crypto.randomUUID(), // Generate UUID for new customers
+      name: formData.name || '',
+      phone: formData.phone || '',
+      email: formData.email,
+      debtAmount: formData.debtAmount || 0,
+      lastPurchaseDate: customer?.lastPurchaseDate || new Date().toISOString(),
+      lastPaymentDate: customer?.lastPaymentDate,
+      notificationSent: formData.notificationSent || false
+    };
+    
     // Submit the form data
-    onSubmit(formData as Customer);
+    onSubmit(newCustomer);
   };
 
   return (
@@ -119,7 +132,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({
           Cancelar
         </Button>
         <Button type="submit" variant="primary" size="lg">
-          Salvar Cliente
+          {customer ? 'Atualizar Cliente' : 'Salvar Cliente'}
         </Button>
       </div>
     </form>
