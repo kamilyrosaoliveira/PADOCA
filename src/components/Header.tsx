@@ -34,7 +34,7 @@ export const Header: React.FC<{ activePath: string; setActivePath: (path: string
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <DollarSign size={36} className="text-amber-200" />
-            <h1 className="text-3xl font-bold">Padaria Finanças</h1>
+            <h1 className="text-3xl font-bold">PADOCA</h1>
           </div>
 
           {/* Mobile menu button */}
